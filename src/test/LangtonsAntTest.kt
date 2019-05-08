@@ -2,6 +2,7 @@ package com.neelkamath.langtonsant.test
 
 import com.neelkamath.langtonsant.*
 import org.junit.Test
+import kotlin.random.Random
 import kotlin.test.assertEquals
 import kotlin.test.assertFails
 import kotlin.test.assertNull
@@ -44,6 +45,15 @@ class GridTest {
 }
 
 class GridCreatorTest {
+    /**
+     * Returns a [Grid] with a [Grid.plane] of size [rows] and [columns]. The [Grid.plane] will be filled with
+     * [Cell.WHITE]. The [Grid.ant] will be placed randomly.
+     */
+    private fun createGrid(rows: Int, columns: Int) = Grid(
+        createPlane(rows, columns),
+        Ant(Position(Random.nextInt(rows), Random.nextInt(columns)), Direction.values().random())
+    )
+
     @Test
     fun `creating a grid should create a grid containing only white cells with a randomly placed ant`() {
         val rows = 3

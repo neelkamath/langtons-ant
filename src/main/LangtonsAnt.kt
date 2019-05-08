@@ -1,7 +1,5 @@
 package com.neelkamath.langtonsant
 
-import kotlin.random.Random
-
 typealias Plane = List<MutableList<Cell>>
 
 /** The first row and column are indicated by zero. */
@@ -79,21 +77,6 @@ fun createPlane(length: Int) = createPlane(length, length)
 
 /** Returns a [Plane] of size [rows] and [columns] with each cell being [Cell.WHITE]. */
 fun createPlane(rows: Int, columns: Int) = List(rows) { MutableList(columns) { Cell.WHITE } }
-
-/**
- * Returns a [Grid] with a [Grid.plane] having [length] rows and columns. The [Grid.plane] will be filled with
- * [Cell.WHITE]. The [Grid.ant] will be placed randomly.
- */
-fun createGrid(length: Int) = createGrid(length, length)
-
-/**
- * Returns a [Grid] with a [Grid.plane] of size [rows] and [columns]. The [Grid.plane] will be filled with [Cell.WHITE].
- * The [Grid.ant] will be placed randomly.
- */
-fun createGrid(rows: Int, columns: Int) = Grid(
-    createPlane(rows, columns),
-    Ant(Position(Random.nextInt(rows), Random.nextInt(columns)), Direction.values().random())
-)
 
 /** Returns [grid]'s next state, or null if the [Grid.ant] hits a wall (happens when it cannot move forward). */
 fun progressGrid(grid: Grid): Grid? = with(grid) {
